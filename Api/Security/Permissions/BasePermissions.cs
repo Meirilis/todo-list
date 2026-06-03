@@ -6,4 +6,5 @@ public class BasePermissions
     public const int USERS = 2;
     public const int RESOURCES = 3;
     public const int REPORTS = 4;
+    public const int TASKS = 5;
 }

@@ -14,6 +14,8 @@ public static class EndpointPermissions
             { "/resources", new[] { 3 } },
 
             { "/reports", new[] { 4 } },
+            
+            { "/tasks", new[] { 5 } }
 
             // Outros endpoints podem ser adicionados aqui
             // { "/outro-endpoint", new[] { id } }
