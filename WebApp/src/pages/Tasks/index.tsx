@@ -3,15 +3,17 @@ import {
     Box,
     Button,
     CircularProgress,
+    Container,
     Dialog,
     DialogContent,
     DialogTitle,
     TextField,
-    Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { PageTitle } from '../../components';
 import { TaskItemForm } from '../../components/TaskItemForm';
 import { TaskItemsTable } from '../../components/TaskItemsTable';
+import { usePermissions } from '../../hooks';
 import { useTaskItems } from '../../hooks/useTaskItems';
 import type {
     TaskItem,
@@ -34,6 +36,8 @@ export const Tasks = () => {
         deleteTaskItem,
         searchTaskItems,
     } = useTaskItems();
+
+    const { permissionsMap } = usePermissions();
 
     const [searchKey, setSearchKey] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
@@ -85,11 +89,13 @@ export const Tasks = () => {
 
     const handleDelete = async (taskItem: TaskItemTable) => {
         const confirmed = window.confirm(
-            'Deseja excluir a tarefa "' + taskItem.title + '"?');
+            'Deseja excluir a tarefa "' + taskItem.title + '"?'
+        );
 
         if (!confirmed) {
             return;
         }
+
         await deleteTaskItem(taskItem.id);
         await reload();
     };
@@ -114,21 +120,35 @@ export const Tasks = () => {
         await updateTaskItem(taskItem.id, {
             title: taskItem.title,
             description: taskItem.description,
-            completed: !taskItem.completed
+            completed: !taskItem.completed,
         });
+
         await reload();
     };
 
     return (
-        <Box>
-            <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-                <Typography variant="h4">Tarefas</Typography>
+        <Container
+            sx={{
+                mt: 4,
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                textAlign: 'center',
+            }}
+        >
+            <PageTitle
+                icon={permissionsMap.TASKS}
+                title="Tarefas"
+            />
+
+            <Box width="100%" display="flex" justifyContent="flex-end" mb={2}>
                 <Button variant="contained" color="primary" onClick={handleOpenCreate}>
                     Nova Tarefa
                 </Button>
             </Box>
 
-            <Box mt={3}>
+            <Box width="100%" mb={3}>
                 <TextField
                     label="Buscar tarefas"
                     value={searchKey}
@@ -138,7 +158,7 @@ export const Tasks = () => {
             </Box>
 
             {error && (
-                <Box mt={2}>
+                <Box width="100%" mt={2}>
                     <Alert severity="error">{error}</Alert>
                 </Box>
             )}
@@ -148,22 +168,27 @@ export const Tasks = () => {
                     <CircularProgress />
                 </Box>
             ) : (
-                <TaskItemsTable
-                    taskItems={taskItems}
-                    totalTaskItems={totalTaskItems}
-                    page={page}
-                    pageSize={pageSize}
-                    loading={loading}
-                    onPageChange={handlePageChange}
-                    onPageSizeChange={handlePageSizeChange}
-                    onEdit={handleOpenEdit}
-                    onDelete={handleDelete}
-                    onToggleCompleted={handleToggleCompleted}
-                />
+                <Box width="100%">
+                    <TaskItemsTable
+                        taskItems={taskItems}
+                        totalTaskItems={totalTaskItems}
+                        page={page}
+                        pageSize={pageSize}
+                        loading={loading}
+                        onPageChange={handlePageChange}
+                        onPageSizeChange={handlePageSizeChange}
+                        onEdit={handleOpenEdit}
+                        onDelete={handleDelete}
+                        onToggleCompleted={handleToggleCompleted}
+                    />
+                </Box>
             )}
 
             <Dialog open={modalOpen} onClose={handleCloseModal} maxWidth="sm" fullWidth>
-                <DialogTitle>{selectedTaskItem ? 'Editar Tarefa' : 'Nova Tarefa'}</DialogTitle>
+                <DialogTitle>
+                    {selectedTaskItem ? 'Editar Tarefa' : 'Nova Tarefa'}
+                </DialogTitle>
+
                 <DialogContent>
                     <TaskItemForm
                         taskItem={selectedTaskItem}
@@ -172,6 +197,6 @@ export const Tasks = () => {
                     />
                 </DialogContent>
             </Dialog>
-        </Box>
+        </Container>
     );
-}
+};
