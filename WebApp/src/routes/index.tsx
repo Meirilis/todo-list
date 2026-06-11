@@ -7,6 +7,7 @@ import {
   PasswordReset,
   Reports,
   Resources,
+  Tasks,
   UnauthorizedAccess,
   Users,
 } from "../pages";
@@ -50,6 +51,11 @@ const privateRoutes = [
     path: "/reports",
     element: <Reports />,
     requiredPermission: PERMISSIONS.REPORTS,
+  },
+  {
+    path: "/tasks",
+    element: <Tasks />,
+    requiredPermission: PERMISSIONS.TASKS,
   },
 ];
 

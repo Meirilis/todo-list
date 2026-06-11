@@ -28,3 +28,11 @@ export {
 } from './usersServices/listUsers';
 export { updateUser } from './usersServices/updateUser';
 export { deleteUser } from './usersServices/deleteUser';
+
+export { createTaskItem } from './taskItemsServices/createTaskItem';
+export { deleteTaskItem } from './taskItemsServices/deleteTaskItem';
+export { getTaskItemById } from './taskItemsServices/getTaskItemById';
+export { listTaskItems } from './taskItemsServices/listTaskItems';
+export { listTaskItemsForSelect } from './taskItemsServices/listTaskItemsForSelect';
+export { searchTaskItems } from './taskItemsServices/searchTaskItems';
+export { updateTaskItem } from './taskItemsServices/updateTaskItem';

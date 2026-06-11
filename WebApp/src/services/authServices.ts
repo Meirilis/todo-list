@@ -3,7 +3,7 @@ import type {
   LoginPayload,
   LoginResponse,
   ExternalLoginPayload,
-  PasswordResetPayload,
+  // PasswordResetPayload,
   RefreshRequest,
   RefreshResponse,
 } from '../interfaces';

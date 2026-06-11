@@ -19,6 +19,11 @@ export type { SystemResourcesPagination } from './systemResourcesInterfaces/Syst
 export type { SystemResourcesContextProps } from './contextsInterfaces/SystemResourcesContextProps';
 export type { NotificationContextProps } from './contextsInterfaces/NotificationContextProps';
 export type { SystemStats } from './SystemStats';
+export type { TaskItem } from './taskItemInterfaces/TaskItem';
+export type { TaskItemFormValues } from './taskItemInterfaces/TaskItemFormValues';
+export type { TaskItemOptions } from './taskItemInterfaces/TaskItemOptions';
+export type { TaskItemPagination } from './taskItemInterfaces/TaskItemPagination';
+export type { TaskItemTable } from './taskItemInterfaces/TaskItemTable';
 export type { ThemeContextProps } from './contextsInterfaces/ThemeContextProps';
 export type { UsersContextProps } from './contextsInterfaces/UsersContextProps';
 export type { UserFormValues } from './userInterfaces/UserFormValues';

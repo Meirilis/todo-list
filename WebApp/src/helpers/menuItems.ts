@@ -2,6 +2,7 @@ import {
   faChartBar,
   faChartLine,
   faCogs,
+  faListCheck,
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 import type { MenuItem } from '../interfaces';
@@ -30,5 +31,11 @@ export const menuItems: MenuItem[] = [
     icon: faChartBar,
     route: '/reports',
     permission: PERMISSIONS.REPORTS,
+  },
+  {
+    label: 'Tarefas',
+    route: '/tasks',
+    icon: faListCheck,
+    permission: PERMISSIONS.TASKS,
   },
 ];

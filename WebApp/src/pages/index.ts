@@ -6,3 +6,4 @@ export { default as Reports } from './Reports';
 export { default as Resources } from './Resources';
 export { default as UnauthorizedAccess } from './UnauthorizedAccess';
 export { default as Users } from './Users';
+export { Tasks } from './Tasks';
